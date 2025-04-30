@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patentta - Protección de Propiedad Industrial e Intelectual</title>
+    <style>
+        :root {
+            --primary-color: #003366; /* Azul oscuro corporativo */
+            --secondary-color: #4B92DB; /* Azul claro */
+            --accent-color: #00A0E1; /* Azul brillante */
+            --light-color: #F5F9FF; /* Azul muy claro */
+            --dark-color: #2C3E50; /* Gris azulado oscuro */
+            --text-color: #333333;
+            --text-light: #FFFFFF;
+            --gray-light: #E8E8E8;
+            --gray-medium: #CCCCCC;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-color);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 51, 102, 0.7);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--text-light);
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--text-light);
+            color: var(--primary-color);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services {
+            background-color: var(--text-light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-color: var(--gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .about {
+            background-color: var(--light-color);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+        
+        .about-image {
+            position: relative;
+            height: 400px;
+            background-color: var(--gray-light);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+        
+        .contact {
+            background-color: var(--text-light);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--gray-medium);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: var(--text-light);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 300px;
+                margin-top: 2rem;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Patent<span>ta</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Protección de Propiedad Industrial e Intelectual</h1>
+            <p>Expertos en patentes, marcas y derechos de autor para Colombia y todo el mundo. Protege tus ideas e innovaciones con los mejores especialistas.</p>
+            <a href="#contact" class="btn">Contáctanos</a>
+            <a href="#services" class="btn btn-outline">Nuestros Servicios</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios</h2>
+                <p>Ofrecemos soluciones integrales para la protección de tus activos intelectuales en Colombia y a nivel internacional.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <i>📝</i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Registro de Patentes</h3>
+                        <p>Protección legal para tus invenciones e innovaciones tecnológicas. Asesoría en patentes nacionales e internacionales.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <i>🏷️</i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Registro de Marcas</h3>
+                        <p>Protege el nombre, logo y distintivos de tu empresa o producto en Colombia y más de 120 países.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <i>📚</i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Derechos de Autor</h3>
+                        <p>Registro y protección de obras literarias, artísticas, software y otras creaciones intelectuales.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <i>🔍</i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Búsqueda de Antecedentes</h3>
+                        <p>Análisis de patentabilidad y disponibilidad de marcas para evitar conflictos legales.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <i>⚖️</i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Asesoría Legal</h3>
+                        <p>Defensa de tus derechos de propiedad intelectual ante infracciones y litigios.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <i>🌐</i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Protección Internacional</h3>
+                        <p>Gestión de patentes y marcas en múltiples jurisdicciones a través de tratados internacionales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Nosotros</h2>
+                <p>Patentta es un equipo de expertos en propiedad intelectual comprometidos con la protección de tus ideas.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Expertos en Propiedad Industrial e Intelectual</h2>
+                    <p>En Patentta contamos con más de 15 años de experiencia protegiendo los activos intangibles de empresas e inventores en Colombia y el mundo.</p>
+                    <p>Nuestro equipo multidisciplinario está conformado por abogados especializados en propiedad intelectual, ingenieros y consultores con amplia experiencia en diferentes sectores tecnológicos e industriales.</p>
+                    <p>Ofrecemos soluciones personalizadas para cada cliente, desde emprendedores hasta grandes corporaciones, asegurando la mejor estrategia de protección para sus creaciones e innovaciones.</p>
+                    <p>Nuestra red internacional de colaboradores nos permite gestionar registros en más de 150 países, garantizando una cobertura global para nuestros clientes.</p>
+                </div>
+                <div class="about-image">
+                    <i>🏢</i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+                <p>Contáctanos para una consulta gratuita sobre cómo proteger tus activos intelectuales.</p>
+            </div>
+            <form id="contactForm" class="contact-form" action="process_contact.php" method="POST">
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="country">País</label>
+                    <select id="country" name="country" required>
+                        <option value="">Seleccione un país</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Otro">Otro país</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="service">Servicio de interés</label>
+                    <select id="service" name="service" required>
+                        <option value="">Seleccione un servicio</option>
+                        <option value="Patentes">Registro de Patentes</option>
+                        <option value="Marcas">Registro de Marcas</option>
+                        <option value="Derechos Autor">Derechos de Autor</option>
+                        <option value="Busqueda">Búsqueda de Antecedentes</option>
+                        <option value="Asesoria">Asesoría Legal</option>
+                        <option value="Internacional">Protección Internacional</option>
+                        <option value="Otro">Otro servicio</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Patentta</h3>
+                    <p>Expertos en protección de propiedad industrial e intelectual para Colombia y el mundo.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#">Registro de Patentes</a></li>
+                        <li><a href="#">Registro de Marcas</a></li>
+                        <li><a href="#">Derechos de Autor</a></li>
+                        <li><a href="#">Protección Internacional</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Bogotá, Colombia</li>
+                        <li>info@patentta.com</li>
+                        <li>+57 1 123 4567</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Patentta. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form validation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            let valid = true;
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const country = document.getElementById('country');
+            const service = document.getElementById('service');
+            const message = document.getElementById('message');
+            
+            // Reset error states
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.classList.remove('error');
+            });
+            
+            // Validate name
+            if (name.value.trim() === '') {
+                name.parentElement.classList.add('error');
+                valid = false;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                email.parentElement.classList.add('error');
+                valid = false;
+            }
+            
+            // Validate country
+            if (country.value === '') {
+                country.parentElement.classList.add('error');
+                valid = false;
+            }
+            
+            // Validate service
+            if (service.value === '') {
+                service.parentElement.classList.add('error');
+                valid = false;
+            }
+            
+            // Validate message
+            if (message.value.trim() === '') {
+                message.parentElement.classList.add('error');
+                valid = false;
+            }
+            
+            if (!valid) {
+                e.preventDefault();
+                alert('Por favor complete todos los campos requeridos correctamente.');
+            }
+        });
+        
+        // Add animation to service cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
